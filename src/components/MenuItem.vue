@@ -3,40 +3,32 @@
 <script>
 export default {
 	name: 'MenuItem',
-    props: {
-        imgSrc: String, 
-        imgText: String,
-        name: String,
-        stock: Boolean,
-        quantity: Number,
-        callf: Function
-    },
-    mutations: {qV: Number}
+    props: ["addToShoppingCart", "image", "inStock", "name", "quantity"]
 }
 </script>
 
 <template>
-            <!--   <div v-for="item in simpleMenu" :key="item.name" class="menu-item">  v-model.number="quantity" -->
+           
                 <div  class="menu-item">
 					<img
 						class="menu-item__image"
-						:src="imgSrc"
-						:alt="imgText"
+						:src="image.source"
+						:alt="image.alt"
 					/>
 					<div>
 						<h3>{{ name }}</h3>
-						<p v-if="stock">En stock</p>
+						<p v-if="inStock">En stock</p>
 						<p v-else>En rupture de stock</p>
 						<div>
 							<label for="add-item-quantity"
 								>Quantité : {{ quantity }}</label
 							>
 							<input
-								
+								v-model.number="quantity"
 								id="add-item-quantity"
 								type="number"
 							/>
-							<button @click="callf">
+							<button @click="addToShoppingCart(quantity)">
 								Ajouter au panier d'achat
 							</button>
 						</div>

@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="app">
     <h1>{{ restaurantName }}</h1>
 			<p class="description">
 				Bienvenue dans notre café {{ restaurantName }}! Nous sommes réputés pour
@@ -8,14 +8,18 @@
 				est difficile de s'arrêter.
 			</p>
 
-    <section class="menu">
-				<h2>Menu</h2>
-        <MenuItem  v-for="item in simpleMenu" :key="item.name" 
-        :imgSrc="item.image.source" :imgText="item.image.alt"
-        :name="item.name" :stock="item.inStock" :quantity="item.quantity"
-        :callf="addToShoppingCart(item.quantity)"
-        />
-			</section>
+	<section class="menu">
+			<h2>Menu</h2>
+			<MenuItem
+				v-for="item in simpleMenu"
+				:addToShoppingCart="addToShoppingCart"
+				:name="item.name"
+				:image="item.image"
+				:quantity="item.quantity"
+				:inStock="item.inStock"
+				:key="item.name"
+			/>
+		</section>
 
 			<aside class="shopping-cart">
 				<h2>Panier d'achat: {{ shoppingCart }} articles</h2>
